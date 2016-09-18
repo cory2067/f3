@@ -98,7 +98,7 @@ public class MainActivity extends ListActivity {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
-                        ((TextView) findViewById(R.id.output)).setText("F3");
+                        ((TextView) findViewById(R.id.output)).setText("F3 -- Find Free Food");
                     }
                 });
             }};
