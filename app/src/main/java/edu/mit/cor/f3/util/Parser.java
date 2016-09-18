@@ -44,7 +44,6 @@ public class Parser {
 			place = place.toLowerCase();
 			for (int i = 0; i < in.length()-place.length()+1; i++){
 				if (place.equalsIgnoreCase(in.substring(i,i+place.length()))) {
-					System.out.println("Locations");
 					return place;
 				}
 				
@@ -56,7 +55,6 @@ public class Parser {
 			key = key.toLowerCase();
 			for (int i = 0; i < in.length()-key.length()+1; i++){
 				if (key.equalsIgnoreCase(in.substring(i,i+key.length()))) {
-					System.out.println("Nicknames");
 					return dict.get(key);
 				}
 				
@@ -67,14 +65,12 @@ public class Parser {
 		Pattern p = Pattern.compile(delimeter);
 		Matcher m = p.matcher(in);
 		if (m.find()) {
-			System.out.println("Pattern");
 			isNum = true;
 			return m.group(0);
 		}
 		Pattern pa = Pattern.compile(otherPattern);
 		Matcher ma = pa.matcher(in);
 		if (ma.find()) {
-			System.out.println("Other pattern");
 			String temp = ma.group(0);
 			String out = "";
 			for (int i = temp.length()-1; i > -1; i--){
