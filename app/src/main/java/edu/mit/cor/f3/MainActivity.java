@@ -89,7 +89,7 @@ public class MainActivity extends ListActivity {
                 Arrays.sort(foods);
                 //String[] text = new String[foods.length];
                 for(int q=0; q < Math.min(foods.length, 9); q++) {
-                    values[q] = foods[q].subject + "\n\t" + (int)foods[q].time + " hours ago, " + (Double.toString(foods[q].distance)).substring(0, 4   ) + "mi";
+                    values[q] = foods[q].subject + "\n\t" + (Double.toString(foods[q].time)).substring(0,4) + " hours ago, " + (Double.toString(foods[q].distance)).substring(0, 4) + "mi";
                 }
 
 

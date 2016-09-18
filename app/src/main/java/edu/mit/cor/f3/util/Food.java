@@ -14,7 +14,7 @@ public class Food implements Comparable<Food>
         this.body = body;
         this.lat = coord[0];
         this.lon = coord[1];
-        this.time = (double) time/3600000.0;
+        this.time = (double)time/3600000.0;
         this.distance = 0;
     }
 
