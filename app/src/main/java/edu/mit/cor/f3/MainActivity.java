@@ -1,52 +1,79 @@
 package edu.mit.cor.f3;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.app.ListActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import edu.mit.cor.f3.util.Food;
+import edu.mit.cor.f3.util.Mail;
+
+public class MainActivity extends ListActivity {
+    TextView content;
+    Food[] foods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        content = (TextView)findViewById(R.id.output);
+
+    String[] values = new String[] { "free food outside building 50 eom\n\t15 min ago, 0.4mi", "Adapter implementation", "Simple List View With ListActivity",
+                "ListActivity Android", "Android Example", "ListActivity Source Code", "ListView ListActivity Array Adapter", "Android Example ListActivity" };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, values);
+
+
+        // Assign adapter to List
+        setListAdapter(adapter);
+
+        Thread t = new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void run() {
+                foods = Mail.read();
+                String[] text = new String[foods.length];
+                for(int q=0; q<foods.length; q++) {
+                    text[q] = foods[q].subject + "\n\t" + (int)foods[q].time + ", 0.0mi";
+                }
             }
         });
+
+        t.start();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void updateFood() {
+        Food[] foods = Mail.read();
+        String[] text = new String[foods.length];
+        for(int q=0; q<foods.length; q++) {
+            text[q] = foods[q].subject + "\n\t" + (int)foods[q].time + ", 0.0mi";
         }
+        String[] values = text;
 
-        return super.onOptionsItemSelected(item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, values);
+
+
+        // Assign adapter to List
+        setListAdapter(adapter);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+
+        super.onListItemClick(l, v, position, id);
+
+        /*/// ListView Clicked item index
+        int itemPosition     = position;
+
+        // ListView Clicked item value
+        String  itemValue    = (String) l.getItemAtPosition(position);
+
+        content.setText("Click : \n  Position :"+itemPosition+"  \n  ListItem : " +itemValue);
+*/
     }
 }

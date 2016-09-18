@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':mailcore2-android-3'
