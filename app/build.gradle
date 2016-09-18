@@ -8,12 +8,15 @@ android {
     }
     defaultConfig {
         applicationId "edu.mit.cor.f3"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -26,19 +29,19 @@ repositories {
     maven {
         url "https://maven.java.net/content/groups/public/"
     }
-    flatDir {
-        dirs 'libs'
-    }
+    //flatDir {
+     //   dirs 'libs'
+    //}
 }
 
 dependencies {
-    compile project(':mailcore2-android-3')
+    //compile project(':mailcore2-android-3')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
-    compile 'javax.mail:mail:1.4.1'
-    // compile 'com.sun.mail:android-mail:1.5.5'
+    //compile 'javax.mail:mail:1.4.1'
+     compile 'com.sun.mail:android-mail:1.5.5'
     compile 'com.sun.mail:android-activation:1.5.5'
     //compile 'com.sun.mail:android-additionnal:1.0'
     compile 'com.eclipsesource.minimal-json:minimal-json:0.9.4'

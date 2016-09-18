@@ -31,12 +31,22 @@
 
     <TextView android:id="@+id/output"
         android:background="#758AA7"
-        android:layout_height="42dp"
+        android:layout_height="46dp"
         android:padding="6px"
         android:textColor="#ffffff"
-        android:text="F3" android:layout_width="fill_parent"
+        android:text="F3 - Loading..." android:layout_width="fill_parent"
         android:minHeight="64dp"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:paddingRight="8px" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="refresh"/>
 
     <ListView
         android:id="@android:id/list"

@@ -8,13 +8,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-/*import javax.mail.Folder;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Store;
-import javax.mail.internet.MimeMultipart;*/
+import javax.mail.internet.MimeMultipart;
 
-import com.libmailcore.*;
+//import com.libmailcore.*;
 
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -25,10 +25,9 @@ import javax.mail.internet.MimeMultipart;
 
 public class Mail
 {
-    /*public static void main(String[] args) {
-        Mail gmail = new Mail();
-        gmail.read();
-    }*/
+    public static void main(String[] args) {
+        read();
+    }
 
 
     public static Food[] read() {
