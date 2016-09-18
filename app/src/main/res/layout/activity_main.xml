@@ -37,7 +37,8 @@
         android:text="F3 - Loading..." android:layout_width="fill_parent"
         android:minHeight="64dp"
         android:textSize="32dp"
-        android:paddingRight="8px" />
+        android:paddingRight="8px"
+        android:visibility="visible" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -51,7 +52,15 @@
     <ListView
         android:id="@android:id/list"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:visibility="gone">
     </ListView>
+
+    <WebView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/webView"
+        android:layout_gravity="top|center_horizontal"
+        style="text-align: center;" />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,6 +41,9 @@ public class MainActivity extends ListActivity {
         setListAdapter(adapter);
 
         loadFoodList();
+
+        WebView wv = (WebView) findViewById(R.id.webView);
+        wv.loadUrl("file:///android_asset/load.html");
 
         requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1337);
 
@@ -80,10 +84,14 @@ public class MainActivity extends ListActivity {
     }
 
     public void loadFoodList() {
+        System.out.println("the thing");
         ((TextView) findViewById(R.id.output)).setText("F3 -- Loading");
+        ((WebView) findViewById(R.id.webView)).setVisibility(View.VISIBLE);
+        ((ListView) findViewById(android.R.id.list)).setVisibility(View.GONE);
         Thread t = new Thread() {
             @Override
             public void run() {
+                System.out.println("thread openened");
                 foods = Mail.read();
                 updateLoc(initial);
                 Arrays.sort(foods);
@@ -99,6 +107,8 @@ public class MainActivity extends ListActivity {
                     public void run() {
                         adapter.notifyDataSetChanged();
                         ((TextView) findViewById(R.id.output)).setText("F3 -- Find Free Food");
+                        ((WebView) findViewById(R.id.webView)).setVisibility(View.GONE);
+                        ((ListView) findViewById(android.R.id.list)).setVisibility(View.VISIBLE);
                     }
                 });
             }};
