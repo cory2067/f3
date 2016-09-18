@@ -11,24 +11,21 @@ import java.io.*;
 
 public class Find
 {
-
-    public static void main(String[] args) throws Exception {
-        boolean num = true;
-        String input = "9";
+    public static double[] getCoordinates(boolean num, String input) throws IOException {
         URL search = new URL("http://m.mit.edu/apis/maps/places?q=" + URLEncoder.encode(input, "UTF-8"));
         URLConnection c = search.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         c.getInputStream()));
         String inputLine = in.readLine();
-        System.out.println(inputLine);
+        //System.out.println(inputLine);
         in.close();
 
         if (inputLine != null) {
             JsonArray arr = Json.parse(inputLine).asArray();
             if(arr.size() == 0) {
-                System.out.println("you botched it");
-                return;
+                //System.out.println("you botched it");
+                return null;
             }
             for(int a=0; a < arr.size(); a++) {
                 JsonObject data = arr.get(a).asObject();
@@ -37,8 +34,10 @@ public class Find
                 System.out.println(data.getString("name", "mit"));
                 double lat = data.getDouble("lat_wgs84", 0);
                 double lon = data.getDouble("long_wgs84", 0);
-                System.out.println("Coordinates: " + lat + ", " + lon);
+                //System.out.println("Coordinates: " + lat + ", " + lon);
+                return new double[] {lat, lon};
             }
         }
+        return null;
     }
 }

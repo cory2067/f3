@@ -1,3 +1,5 @@
+package edu.mit.cor.f3.util;
+
 /*
  * Instantiate using input string of title and body (nothing in between)
  * Public functions:
@@ -24,9 +26,9 @@ public class Parser {
 		location = locationParse(in);
 	}
 	
-	public void startDictionary(){
+	private void startDictionary(){
 		dict.put("stud","w20");
-		dict.put("ec","east campus");
+		dict.put(" ec","east campus");
 		dict.put("bc","burton conner");
 		dict.put("sponge","simmons");
 		dict.put("the z", "zesiger");
@@ -38,7 +40,7 @@ public class Parser {
 	}
 	
 	// returns location
-	public String locationParse(String in){
+	private String locationParse(String in){
 		// returns any of the locations in places
 		for (String place: places){
 			place = place.toLowerCase();
